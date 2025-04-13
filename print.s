@@ -387,6 +387,12 @@ L2A4E:
         nop
         nop
 .endif
+.ifdef SBC1
+        nop
+        nop
+        nop
+        nop
+.endif
 L2A56:
         and     #$FF
 LE8F2:

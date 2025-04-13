@@ -11,6 +11,9 @@
 .ifdef OSI
 .include "osi_iscntc.s"
 .endif
+.ifdef SBC1
+.include "sbc_iscntc.s"
+.endif
 .ifdef APPLE
 .include "apple_iscntc.s"
 .endif

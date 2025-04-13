@@ -5,6 +5,9 @@ L2420:
   .ifdef OSI
         jsr     OUTDO
   .endif
+  .ifdef SBC1
+        jsr     OUTDO
+  .endif
         dex
   .ifdef AIM65
         bmi     L2423
@@ -17,6 +20,9 @@ LB35F:
   .endif
 L2423:
   .ifdef OSI
+        jsr     OUTDO
+  .endif
+  .ifdef SBC1
         jsr     OUTDO
   .endif
         jsr     CRDO
@@ -47,6 +53,20 @@ L0C32:
         ldx     #$00
 INLIN2:
         jsr     GETLN
+    .ifdef SBC1
+        cmp     #$07
+        beq     L2443
+        cmp     #$0D
+        beq     L2453
+        cmp     #$08 ; BACKSPACE
+        beq     L2420
+        cmp     #$20
+        bcc     INLIN2
+        cmp     #$7D
+        bcs     INLIN2
+        cmp     #$40 ; @
+        beq     L2423
+    .endif
     .ifdef AIM65
         cmp     #$1A
         bne     INLINAIM
@@ -99,7 +119,7 @@ L2443:
     .endif
         sta     INPUTBUFFER,x
         inx
-    .if .def(OSI) || .def(AIM65)
+.if .def(OSI) || .def(AIM65) || .def(SBC1)
         .byte   $2C
     .else
         bne     INLIN2
@@ -127,6 +147,23 @@ GETLN:
         jsr     MONRDKEY
     .endif
     .ifdef OSI
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        and     #$7F
+    .endif
+    .ifdef SBC1
         nop
         nop
         nop

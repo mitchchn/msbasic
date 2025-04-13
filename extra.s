@@ -1,5 +1,10 @@
 .segment "EXTRA"
 
+.ifdef SBC1
+.include "sbc_extra.s"
+.endif
+
+
 .ifdef KIM
 .include "kim_extra.s"
 .endif

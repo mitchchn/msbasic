@@ -485,6 +485,9 @@ QT_BYTES_FREE:
         .byte   CR,LF,CR,LF
   .endif
 QT_BASIC:
+  .ifdef SBC1
+        .byte   "MOS TECH 6502 BASIC V1.1"
+  .endif
   .ifdef OSI
         .byte   "OSI 6502 BASIC VERSION 1.0 REV 3.2"
   .endif
